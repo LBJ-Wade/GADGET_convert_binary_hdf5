@@ -43,6 +43,20 @@ missingSmoothingLength, missingInternalEnergy to True.
 If dealing with long ints, you can set the longInts flag as True (I haven't tested this option yet).
 
 """
+#----------Make it print------------------
+class Unbuffered(object):
+   def __init__(self, stream):
+       self.stream = stream
+   def write(self, data):
+       self.stream.write(data)
+       self.stream.flush()
+   def writelines(self, datas):
+       self.stream.writelines(datas)
+       self.stream.flush()
+   def __getattr__(self, attr):
+       return getattr(self.stream, attr)
+
+sys.stdout = Unbuffered(sys.stdout)
 
 #-----------Adjust this part if necessary-------------------------------------------------------------
 #Some flags (explained in 'Notes')
