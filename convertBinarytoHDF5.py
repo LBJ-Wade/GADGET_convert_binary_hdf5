@@ -124,7 +124,7 @@ def read_binaryfile(filename, d_flags):
     i += 1
   
   #Read the rest of the empty header
-  f.read(HeaderLength - bn)
+  f.read(int(HeaderLength - bn))
 
   #Print the header to screen
   print("----------------HEADER INFO---------------------")
